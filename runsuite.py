@@ -91,7 +91,7 @@ if __name__ == "__main__":
                 fullOutfileName = argRes["testFolder"] + "/" + outFileName
 
                 if outFileName in testFiles:
-                    diffAllOut = subprocess.Popen("diff <(cat {}) <(cat {})".format(tmpFilePath, fullOutfileName), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
+                    diffAllOut = subprocess.Popen("diff {} {}".format(tmpFilePath, fullOutfileName), stdout=subprocess.PIPE, stderr=subprocess.PIPE, shell=True)
                     diffAllOut.wait()
 
                     diffCode = diffAllOut.returncode
@@ -117,7 +117,7 @@ if __name__ == "__main__":
                 .format(
                     colorText(testsCompleted, colors.OKBLUE), 
                     colorText(testsCompleted - failedTests, colors.OKGREEN), 
-                    colorText(testFailed, colors.FAIL))
+                    colorText(failedTests, colors.FAIL))
                 )
         print("\n-------------------------------------------------------------------------")
         sys.exit(-1)
